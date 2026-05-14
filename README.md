@@ -21,6 +21,7 @@ Data source: [Copernicus Climate Data Store, dataset `sis-ecde-climate-indicator
 - [Manifest CSV](#manifest-csv)
 - [Ensemble coverage caveat](#ensemble-coverage-caveat)
 - [Method / citation](#method--citation)
+- [Citing this toolbox](#citing-this-toolbox)
 - [Limitations](#limitations)
 - [License](#license)
 
@@ -69,10 +70,12 @@ ECDE 0.25 degree bias-adjusted product only.
 
 ## Installation
 
-1. Clone or download this repository.
-   ```
+1. Clone or download this repository:
+
+   ```bash
    git clone https://github.com/PedroMMGoncalves/ecde-arcgis-tools.git
    ```
+
 2. In ArcGIS Pro, open the **Catalog** pane.
 3. Right-click **Toolboxes** -> **Add Toolbox**.
 4. Browse to `ArcGisPro_Toolbox/ecde_hddcdd_tools_v1.pyt` and add it.
@@ -124,7 +127,7 @@ box is read from each NetCDF and a binary polygon mask is applied
 For Portugal-clipped output of the full ECDE catalogue (1 reanalysis file +
 32 projection files, 4732 GeoTIFFs):
 
-```
+```text
 Engine: netCDF4 + GDAL (fast path, v1.0.0)
 ... wrote 4732 GeoTIFFs in ~9 seconds (~0.002 s/slice)
 ```
@@ -177,7 +180,7 @@ undefined.
 
 ## Output naming
 
-```
+```text
 Reanalysis:  HDD_reanalysis_yearly_2020.tif
 Projections: HDD_rcp45_RACMO22E_EC-EARTH_r1i1p1_2050.tif
 Ensemble:    HDD_rcp45_2050_mean.tif
@@ -246,7 +249,35 @@ Iberian Peninsula:
 
 If you use this toolbox in published work, please cite both the dataset
 (`sis-ecde-climate-indicators` on Copernicus CDS) and Spinoni et al. (2018),
-and link to this repository.
+and link to this repository (see [Citing this toolbox](#citing-this-toolbox)).
+
+---
+
+## Citing this toolbox
+
+If this toolbox supports your published work, please cite it. A
+[`CITATION.cff`](CITATION.cff) file is included so GitHub renders a
+"Cite this repository" widget and reference managers (Zotero, Mendeley)
+import the metadata automatically.
+
+**Software citation:**
+
+> Goncalves, P. (2026). *ecde-arcgis-tools: ArcGIS Pro toolbox for
+> Copernicus ECDE HDD/CDD data* (Version 1.0.0) [Software]. Zenodo.
+> DOI: *to be assigned on first Zenodo release*
+
+The Zenodo DOI is a permanent identifier that resolves to a snapshot of
+the source code archived independently of GitHub. Once minted it will be
+inserted here.
+
+**Please also cite the source dataset and method:**
+
+- Copernicus Climate Change Service (2024). *Climate indicators for
+  Europe from 1940 to 2100 derived from reanalysis and climate
+  projections.* Climate Data Store.
+  <https://cds.climate.copernicus.eu/datasets/sis-ecde-climate-indicators>
+- Spinoni et al. (2018). *International Journal of Climatology* 38:
+  e191-e208. DOI: [10.1002/joc.5362](https://doi.org/10.1002/joc.5362)
 
 ---
 

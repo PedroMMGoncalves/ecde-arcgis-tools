@@ -1,0 +1,59 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "ecde-arcgis-tools: ArcGIS Pro toolbox for Copernicus ECDE HDD/CDD data"
+abstract: >-
+  ArcGIS Pro Python toolbox for working with Copernicus European Climate
+  Data Explorer (sis-ecde-climate-indicators) Heating Degree Days and
+  Cooling Degree Days NetCDF data. Converts the published NetCDFs into
+  GIS-ready GeoTIFFs and computes multi-model ensemble statistics across
+  the 8 GCM-RCM bias-adjusted EURO-CORDEX chains.
+type: software
+authors:
+  - given-names: Pedro
+    family-names: Goncalves
+    email: pedro.goncalves@lneg.pt
+    affiliation: "LNEG - Laboratorio Nacional de Energia e Geologia"
+    orcid: "https://orcid.org/0000-0002-6556-6086"
+version: 1.0.0
+date-released: 2026-05-14
+license: Apache-2.0
+repository-code: "https://github.com/PedroMMGoncalves/ecde-arcgis-tools"
+url: "https://github.com/PedroMMGoncalves/ecde-arcgis-tools"
+keywords:
+  - ArcGIS Pro
+  - Copernicus
+  - ECDE
+  - climate
+  - heating degree days
+  - cooling degree days
+  - EURO-CORDEX
+  - NetCDF
+  - GeoTIFF
+references:
+  - type: article
+    authors:
+      - family-names: Spinoni
+        given-names: Jonathan
+      - family-names: Vogt
+        given-names: Juergen V.
+      - family-names: Barbosa
+        given-names: Paulo
+      - family-names: Dosio
+        given-names: Alessandro
+      - family-names: McCormick
+        given-names: Niall
+      - family-names: Bigano
+        given-names: Andrea
+      - family-names: Fuessel
+        given-names: Hans-Martin
+    title: "Changes of heating and cooling degree-days in Europe from 1981 to 2100"
+    journal: "International Journal of Climatology"
+    volume: 38
+    year: 2018
+    doi: "10.1002/joc.5362"
+  - type: data
+    title: "Climate indicators for Europe from 1940 to 2100 derived from reanalysis and climate projections"
+    publisher:
+      name: "Copernicus Climate Change Service (C3S) Climate Data Store (CDS)"
+    year: 2024
+    url: "https://cds.climate.copernicus.eu/datasets/sis-ecde-climate-indicators"
