@@ -1,0 +1,33 @@
+# ArcGIS Pro
+*.pyt.xml
+*.atbx.xml
+*.tbx.xml
+*.lyrx.bak
+*.aprx.bak
+*.gdb/
+*.lock
+schema.ini
+*.sbn
+*.sbx
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+.env
+
+# Data outputs (the user runs the toolbox locally; do not commit results)
+*.nc
+*.tif
+*.tiff
+manifest.csv
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
