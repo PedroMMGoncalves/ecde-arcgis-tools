@@ -1,5 +1,12 @@
 # ecde-arcgis-tools
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20182176.svg)](https://doi.org/10.5281/zenodo.20182176)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Latest release](https://img.shields.io/github/v/release/PedroMMGoncalves/ecde-arcgis-tools?label=release)](https://github.com/PedroMMGoncalves/ecde-arcgis-tools/releases)
+[![Platform: ArcGIS Pro 3.x](https://img.shields.io/badge/platform-ArcGIS%20Pro%203.x-2D6E9E)](https://www.esri.com/en-us/arcgis/products/arcgis-pro/overview)
+[![Data: Copernicus CDS](https://img.shields.io/badge/data-Copernicus%20CDS-007FB0)](https://cds.climate.copernicus.eu/datasets/sis-ecde-climate-indicators)
+[![ORCID](https://img.shields.io/badge/ORCID-0000--0002--6556--6086-A6CE39?logo=orcid&logoColor=white)](https://orcid.org/0000-0002-6556-6086)
+
 ArcGIS Pro Python toolbox (`.pyt`) for working with Copernicus
 **European Climate Data Explorer (ECDE)** Heating Degree Days (HDD) and
 Cooling Degree Days (CDD) NetCDF data. Converts the published NetCDFs into
@@ -264,11 +271,12 @@ import the metadata automatically.
 
 > Goncalves, P. (2026). *ecde-arcgis-tools: ArcGIS Pro toolbox for
 > Copernicus ECDE HDD/CDD data* (Version 1.0.0) [Software]. Zenodo.
-> DOI: *to be assigned on first Zenodo release*
+> [https://doi.org/10.5281/zenodo.20182176](https://doi.org/10.5281/zenodo.20182176)
 
-The Zenodo DOI is a permanent identifier that resolves to a snapshot of
-the source code archived independently of GitHub. Once minted it will be
-inserted here.
+The Zenodo DOI above is a **version DOI** that resolves to the v1.0.0
+snapshot. For automatic resolution to the latest version, Zenodo also
+provides a **concept DOI** under the same record — find it on the
+[Zenodo record page](https://doi.org/10.5281/zenodo.20182176).
 
 **Please also cite the source dataset and method:**
 

@@ -17,6 +17,11 @@ authors:
 version: 1.0.0
 date-released: 2026-05-14
 license: Apache-2.0
+doi: "10.5281/zenodo.20182176"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.20182176"
+    description: "DOI for v1.0.0"
 repository-code: "https://github.com/PedroMMGoncalves/ecde-arcgis-tools"
 url: "https://github.com/PedroMMGoncalves/ecde-arcgis-tools"
 keywords:
