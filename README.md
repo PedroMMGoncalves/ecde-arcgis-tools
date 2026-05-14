@@ -125,7 +125,7 @@ For Portugal-clipped output of the full ECDE catalogue (1 reanalysis file +
 32 projection files, 4732 GeoTIFFs):
 
 ```
-Engine: netCDF4 + GDAL (fast path, v0.4)
+Engine: netCDF4 + GDAL (fast path, v1.0.0)
 ... wrote 4732 GeoTIFFs in ~9 seconds (~0.002 s/slice)
 ```
 

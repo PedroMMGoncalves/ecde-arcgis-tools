@@ -14,39 +14,44 @@ Tools provided
 
 Changelog
 ---------
-v0.4.1 (2026-05-14)
-  - Fix: PolygonToRaster was being called with value_field="OID@", which
-    is a SearchCursor/CalculateField token, not a real field name.
-    arcpy.conversion.PolygonToRaster requires the actual OID column name
-    ("FID" for shapefiles, "OBJECTID" for File GDB feature classes).
-    Now resolved dynamically via arcpy.Describe(clip_fc).OIDFieldName.
+v1.0.0 (2026-05-14)
+  Initial public release.
 
-v0.4 (2026-05-14)
-  - Tool 1 conversion engine rewritten to use netCDF4 + osgeo.gdal
-    directly, bypassing arcpy.md.MakeNetCDFRasterLayer + CopyRaster.
-    Expected ~20-40x speedup. Both libraries ship with the default
-    ArcGIS Pro 3.x Python environment.
-  - Smart spatial slicing: when a clip polygon is provided, the engine
-    (a) computes the polygon's bounding box, (b) reads ONLY the bbox
-    region from the NetCDF (instead of the full European domain),
-    (c) rasterises the polygon to the NetCDF grid ONCE per unique
-    grid signature (cached across files), (d) applies the mask
-    in-memory. ~99% reduction in data read when clipping to Portugal.
-    Without clip, reads full extent (no mask, no slicing).
-  - Per-file timing: log line now shows elapsed seconds and seconds
-    per slice, e.g. "wrote 148 GeoTIFFs in 12.3s (0.08s/slice)".
-  - Fixed latent bug: removed PROJECTIONS_DEFAULT_START_YEAR=2006
-    fallback that would have produced wrong years if time values
-    failed to parse (the projection files actually start in 1950 or
-    1951 or 1970, not 2006). Time parsing now uses netCDF4.num2date
-    which handles all CF calendars including 360-day (HadGEM2-ES).
-  - Output GeoTIFFs now use DEFLATE compression natively (via GDAL),
-    typically ~70% smaller than uncompressed.
+  Tool 1 - Convert ECDE NetCDF to GeoTIFF
+    - Fast conversion engine using netCDF4 + osgeo.gdal directly
+      (bypasses arcpy.md.MakeNetCDFRasterLayer + CopyRaster).
+      Both libraries ship with the default ArcGIS Pro 3.x Python env.
+    - Smart spatial slicing: when a clip polygon is provided, the engine
+      (a) computes the polygon's bounding box, (b) reads ONLY the bbox
+      region from the NetCDF (instead of the full European domain),
+      (c) rasterises the polygon to the NetCDF grid ONCE per unique
+      grid signature (cached across files), (d) applies the mask
+      in-memory. Without clip, reads full extent (no mask, no slicing).
+    - Time parsing via netCDF4.num2date, which handles all CF calendars
+      including 360-day (HadGEM2-ES). Filename fallback for reanalysis.
+    - PolygonToRaster value_field resolved dynamically via
+      arcpy.Describe(clip_fc).OIDFieldName ("FID" for shapefiles,
+      "OBJECTID" for File GDB feature classes).
+    - DEFLATE-compressed, tiled GeoTIFFs (typically ~70% smaller).
+    - Per-file timing logged (elapsed seconds and seconds per slice).
+    - SetProgressor integration for ArcGIS Pro progress bar.
+    - Verbose flag for one message per TIFF written.
+    - arcpy.mp layer resolver unwraps multidim raster layers from
+      the map into underlying NetCDF file paths.
 
-v0.3 (2026-05-14): SetProgressor, verbose flag, arcpy.mp layer resolver,
-  Tool 3 projections-only clarity, period validation.
-v0.2 (2026-05-14): Time parsing fix via filename, GPRasterLayer param.
-v0.1 (2026-05-14): initial version.
+  Tool 2 - Inspect ECDE NetCDF (debug)
+    - Prints dimensions, variables, parsed filename metadata, and raw
+      time-value diagnostics for one or more ECDE NetCDFs.
+
+  Tool 3 - Compute Ensemble Statistics (projections only)
+    - Pixel-wise stats (mean, median, p10, p90, std, min, max, range,
+      n_models) across the 8 GCM-RCM model dimension.
+    - Groups rasters by (variable, scenario, year).
+    - Reanalysis TIFFs filtered out (ensemble across one model is
+      undefined). Count reported in the log.
+    - Optional 30-year climatological period means of the ensemble
+      mean (default: 2011-2040, 2041-2070, 2071-2100 - IPCC AR6
+      near/mid/long-term).
 
 Filename convention parsed:
   Reanalysis:  03_heating_degree_days-reanalysis-yearly-grid-1940-2025-v2.0.nc
@@ -812,7 +817,7 @@ def count_time_slices(nc_path):
 
 
 # ===========================================================================
-# Ensemble statistics helpers (Tool 3) -- unchanged from v0.3
+# Ensemble statistics helpers (Tool 3)
 # ===========================================================================
 
 def find_tifs(folder):
@@ -1066,7 +1071,7 @@ class ConvertECDEtoGeoTIFF(object):
         messages.addMessage("Processing {} NetCDF file(s), {} total time slices".format(
             len(nc_files), total_slices
         ))
-        messages.addMessage("Engine: netCDF4 + GDAL (fast path, v0.4)")
+        messages.addMessage("Engine: netCDF4 + GDAL (fast path, v1.0.0)")
         messages.addMessage("Output: {}".format(out_folder))
         if year_min is not None or year_max is not None:
             messages.addMessage("Year filter: {} to {}".format(
@@ -1143,7 +1148,7 @@ class ConvertECDEtoGeoTIFF(object):
 
 
 # ---------------------------------------------------------------------------
-# Tool 2: Inspect (unchanged from v0.3)
+# Tool 2: Inspect
 # ---------------------------------------------------------------------------
 
 class InspectECDENetCDF(object):
@@ -1245,7 +1250,7 @@ class InspectECDENetCDF(object):
 
 
 # ---------------------------------------------------------------------------
-# Tool 3: Ensemble Statistics (projections only) -- unchanged from v0.3
+# Tool 3: Ensemble Statistics (projections only)
 # ---------------------------------------------------------------------------
 
 class ComputeEnsembleStatistics(object):
